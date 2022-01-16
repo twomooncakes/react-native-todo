@@ -1,15 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 
-function Task({text}) {
+function Task({task, deleteFunc, completeFunc, id}) {
     return (
-        <View style={styles.item}>
+        <View style={[styles.item, task.completed ? styles.completed : '']}>
             <View style={styles.itemLeft}>
-                <View style={styles.square}></View>
-                <Text style={styles.itemTitle}>{text ? text : 'Unnamed Task'}</Text>
+                <TouchableOpacity onPress={() => completeFunc(id)}>
+                    <View style={styles.square}><Text>{task.completed ? 'x' : ''}</Text></View>
+                </TouchableOpacity>
+                <Text style={styles.itemTitle}>{task.title}</Text>
             </View>
-            <View style={styles.circular}></View>    
+            <TouchableOpacity onPress={() => deleteFunc(id)}>
+                <View style={styles.circular}></View>  
+            </TouchableOpacity>
         </View>
     );
 }
@@ -36,6 +40,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#55BCF6',
         opacity: 0.4,
         marginRight: 15,
+        alignItems: 'center',
     },
     itemTitle: {
         maxWidth: '80%',
@@ -46,6 +51,10 @@ const styles = StyleSheet.create({
         height: 12,
         borderColor: '#55BCF6',
         borderWidth: 2,
+    },
+    completed: {
+        opacity: 0.75,
+
     }
 });
 
