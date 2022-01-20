@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 function Task({task, deleteFunc, completeFunc, id}) {
@@ -7,12 +9,12 @@ function Task({task, deleteFunc, completeFunc, id}) {
         <View style={[styles.item, task.completed ? styles.completed : '']}>
             <View style={styles.itemLeft}>
                 <TouchableOpacity onPress={() => completeFunc(id)}>
-                    <View style={styles.square}><Text>{task.completed ? 'x' : ''}</Text></View>
+                    <View style={styles.square}>{task.completed && <FontAwesomeIcon style={styles.check} icon={ faCheck } />}</View>
                 </TouchableOpacity>
                 <Text style={styles.itemTitle}>{task.title}</Text>
             </View>
             <TouchableOpacity onPress={() => deleteFunc(id)}>
-                <View style={styles.circular}></View>  
+                <FontAwesomeIcon style={styles.deleteBtn} icon={ faTrash } />
             </TouchableOpacity>
         </View>
     );
@@ -37,24 +39,22 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: 24,
         height: 24,
-        backgroundColor: '#55BCF6',
-        opacity: 0.4,
+        backgroundColor: '#97c9e5',
         marginRight: 15,
         alignItems: 'center',
+        justifyContent: 'center',
+    },
+    check: {
+        color: '#183153',
     },
     itemTitle: {
         maxWidth: '80%',
     },
-    circular: {
-        borderRadius: 5,
-        width: 12,
-        height: 12,
-        borderColor: '#55BCF6',
-        borderWidth: 2,
+    deleteBtn: {
+        color: '#97c9e5',
     },
     completed: {
         opacity: 0.75,
-
     }
 });
 

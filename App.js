@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Platform, StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 import Task from './components/Task';
 
@@ -68,7 +70,7 @@ export default function App() {
 
                 <TouchableOpacity onPress={() => handleAddTask()}>
                     <View style={styles.addWrapper}>
-                        <Text style={styles.addSymbol}>+</Text>
+                        <FontAwesomeIcon style={styles.addBtn} icon={ faPlus } />
                     </View>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
@@ -122,7 +124,7 @@ const styles = StyleSheet.create({
     borderColor: '#C0C0C0',
     borderWidth: 1,
   },
-  addSymbol: {
-    
+  addBtn: {
+    color: '#97c9e5'
   },
 });
