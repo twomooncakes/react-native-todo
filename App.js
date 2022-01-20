@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Platform, StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { Platform, StyleSheet, Text, View, KeyboardAvoidingView, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import Task from './components/Task';
 
@@ -16,6 +16,7 @@ export default function App() {
 
     const handleAddTask = () => {
         Keyboard.dismiss();
+        if (task === '') return;
         const newItem = {
             id: listIdCounter,
             title: task,
@@ -35,7 +36,6 @@ export default function App() {
     const handleCompleteTask = (completeId) => {
         const newList = list.map((item) => {
             if (item.id === completeId) {
-                console.log(item.completed);
                 const updatedItem = {
                     ...item,
                     completed: !item.completed,
@@ -52,14 +52,14 @@ export default function App() {
     return (
         <View style={styles.container}>
             {/* Daily Tasks */}
-            <View style={styles.tasksWrapper}>
+            <ScrollView style={styles.tasksWrapper}>
                 <Text style={styles.sectionTitle}>Today's tasks:</Text>
 
                 <View style={styles.items}>
                     {/* Tasks */}
                     {list.map(item => <Task key={item.id} id={item.id} task={item} deleteFunc={handleDeleteTask} completeFunc={handleCompleteTask}></Task>)}
                 </View>
-            </View>
+            </ScrollView>
 
             {/* Add Task */}
             <KeyboardAvoidingView
@@ -74,6 +74,7 @@ export default function App() {
                     </View>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
+            
         </View>
     );
 }
@@ -86,11 +87,10 @@ const styles = StyleSheet.create({
   tasksWrapper: {
     paddingTop: 80,
     paddingHorizontal: 20,
-
   },
   sectionTitle: {
     textAlign: 'center',
-    fontSize: 26,
+    fontSize: 32,
     fontWeight: "600",
     color: '#fff',
   },
@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     paddingHorizontal: '10%',
     width: 250,
+    fontSize: 18,
+    fontWeight: "300",
   },
   addWrapper: {
     width: 60,

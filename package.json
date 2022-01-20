@@ -10,7 +10,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "7": "0.0.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-native-fontawesome": "^0.2.7",

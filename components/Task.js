@@ -14,7 +14,7 @@ function Task({task, deleteFunc, completeFunc, id}) {
                 <Text style={styles.itemTitle}>{task.title}</Text>
             </View>
             <TouchableOpacity onPress={() => deleteFunc(id)}>
-                <FontAwesomeIcon style={styles.deleteBtn} icon={ faTrash } />
+                <FontAwesomeIcon style={styles.deleteBtn} icon={ faTrash } size={24} />
             </TouchableOpacity>
         </View>
     );
@@ -49,6 +49,8 @@ const styles = StyleSheet.create({
     },
     itemTitle: {
         maxWidth: '80%',
+        fontSize: 18,
+        fontWeight: "300",
     },
     deleteBtn: {
         color: '#97c9e5',
